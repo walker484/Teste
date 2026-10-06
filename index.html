@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Curso Walker CRM - Terminal, Node.js, API e Banco de Dados</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #222222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+    }
+
+    header p {
+      margin: 0;
+      color: #d1d5db;
+      font-size: 17px;
+    }
+
+    main {
+      width: 92%;
+      max-width: 1100px;
+      margin: 35px auto;
+    }
+
+    /* MENU */
+
+    .menu {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .menu h2 {
+      margin-top: 0;
+    }
+
+    .menu a {
+      display: inline-block;
+      margin: 5px;
+      padding: 9px 13px;
+      border-radius: 6px;
+      background: #111827;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .menu a:hover {
+      background: #16a34a;
+    }
+
+    /* ESTRUTURA */
+
+    .estrutura {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 35px;
+    }
+
+    .estrutura h2 {
+      margin-top: 0;
+    }
+
+    .arvore {
+      background: #111827;
+      color: #e5e7eb;
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.7;
+    }
+
+    /* AULAS */
+
+    .aula {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+    }
+
+    .aula h2 {
+      margin-top: 0;
+      color: #16a34a;
+    }
+
+    .aula p {
+      color: #555555;
+      line-height: 1.6;
+    }
+
+    .numero-aula {
+      display: inline-block;
+      background: #16a34a;
+      color: white;
+      padding: 5px 9px;
+      border-radius: 5px;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    /* INFO */
+
+    .info {
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      padding: 15px;
+      margin: 15px 0 30px;
+      border-radius: 6px;
+      line-height: 1.6;
+    }
+
+    /* BLOCOS DE CÓDIGO */
+
+    .codigo-box {
+      position: relative;
+      background: #f8fafc;
+      border: 1px solid #dbe2ea;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    .topo-codigo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #e5e7eb;
+      padding: 9px 12px;
+    }
+
+    .nome-arquivo {
+      font-family: Consolas, monospace;
+      font-weight: bold;
+      color: #374151;
+    }
+
+    button {
+      border: 0;
+      background: #16a34a;
+      color: white;
+      padding: 9px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #15803d;
+    }
+
+    pre {
+      margin: 0;
+      padding: 20px;
+      overflow-x: auto;
+      line-height: 1.6;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    /* CORES DO CÓDIGO */
+
+    .tag {
+      color: #d73a49;
+    }
+
+    .attr {
+      color: #6f42c1;
+    }
+
+    .value {
+      color: #005cc5;
+    }
+
+    .keyword {
+      color: #d73a49;
+      font-weight: bold;
+    }
+
+    .function {
+      color: #6f42c1;
+    }
+
+    .string {
+      color: #22863a;
+    }
+
+    .number {
+      color: #005cc5;
+    }
+
+    .comment {
+      color: #6a737d;
+      font-style: italic;
+    }
+
+    .property {
+      color: #005cc5;
+    }
+
+    .plain {
+      color: #24292e;
+    }
+
+    /* RESULTADO */
+
+    .resultado {
+      background: #111827;
+      color: #e5e7eb;
+      border-radius: 10px;
+      padding: 20px;
+      font-family: Consolas, monospace;
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+
+    .verde {
+      color: #16a34a;
+      font-weight: bold;
+    }
+
+    /* LISTA */
+
+    ol,
+    ul {
+      line-height: 1.9;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 50px;
+      padding: 35px 20px;
+      background: #111827;
+      color: #d1d5db;
+      text-align: center;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- CABEÇALHO -->
+
+  <header>
+
+    <h1>Curso Walker CRM</h1>
+
+    <p>
+      Terminal • Node.js • Express • API • Banco de Dados • CRM
+    </p>
+
+  </header>
+
+
+  <main>
+
+    <!-- MENU -->
+
+    <section class="menu">
+
+      <h2>📚 Conteúdo do curso</h2>
+
+      <a href="#estrutura">Estrutura</a>
+
+      <a href="#terminal">Terminal</a>
+
+      <a href="#node">Node.js</a>
+
+      <a href="#arquivos">Arquivos</a>
+
+      <a href="#servidor">Servidor</a>
+
+      <a href="#api">API</a>
+
+      <a href="#banco">Banco de dados</a>
+
+      <a href="#crm">Walker CRM</a>
+
+    </section>
+
+
+    <!-- ESTRUTURA -->
+
+    <section class="estrutura" id="estrutura">
+
+      <h2>📁 Estrutura completa do projeto</h2>
+
+      <p>
+        Esta é a estrutura que vamos construir durante o curso.
+      </p>
+
+      <div class="arvore">
+
+walker-crm/
+<br>
+├── server.js
+<br>
+├── package.json
+<br>
+├── banco.json
+<br>
+├── package-lock.json
+<br>
+├── node_modules/
+<br>
+└── public/
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── index.html
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── style.css
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── app.js
+
+      </div>
+
+    </section>
+
+
+    <div class="info">
+
+      <strong>Importante:</strong>
+
+      <br>
+
+      O
+      <strong>package-lock.json</strong>
+      e a pasta
+      <strong>node_modules/</strong>
+      são criados automaticamente pelo npm.
+
+      <br><br>
+
+      Você não precisa escrever manualmente esses dois itens.
+
+    </div>
+
+
+    <!-- TERMINAL -->
+
+    <section class="aula" id="terminal">
+
+      <span class="numero-aula">AULA 1</span>
+
+      <h2>Terminal — Criar o projeto</h2>
+
+      <p>
+        Nesta aula vamos criar a pasta principal do Walker CRM
+        e entrar nela pelo terminal.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            Terminal
+          </span>
+
+          <button onclick="copiarCodigo('terminal1')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="terminal1">mkdir walker-crm
+
+cd walker-crm</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- PUBLIC -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 2</span>
+
+      <h2>Criar a pasta public</h2>
+
+      <p>
+        A pasta public vai guardar os arquivos da parte visual
+        do Walker CRM.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            Terminal
+          </span>
+
+          <button onclick="copiarCodigo('terminal2')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="terminal2">mkdir public
+
+cd public</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- ARQUIVOS VISUAIS -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 3</span>
+
+      <h2>Criar os arquivos do site</h2>
+
+      <p>
+        Agora vamos criar HTML, CSS e JavaScript.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            Terminal
+          </span>
+
+          <button onclick="copiarCodigo('terminal3')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="terminal3">touch index.html
+
+touch style.css
+
+touch app.js</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- VOLTAR -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 4</span>
+
+      <h2>Voltar para a pasta principal</h2>
+
+      <p>
+        Agora saímos da pasta public e voltamos para walker-crm.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            Terminal
+          </span>
+
+          <button onclick="copiarCodigo('terminal4')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="terminal4">cd ..</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- SERVER E BANCO -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 5</span>
+
+      <h2>Criar os arquivos do servidor</h2>
+
+      <p>
+        Vamos criar o servidor Node.js e o arquivo que
+        inicialmente representará nosso banco de dados.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            Terminal
+          </span>
+
+          <button onclick="copiarCodigo('terminal5')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="terminal5">touch server.js
+
+touch banco.json</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- NPM -->
+
+    <section class="aula" id="node">
+
+      <span class="numero-aula">AULA 6</span>
+
+      <h2>Preparar o Node.js</h2>
+
+      <p>
+        Este comando cria o package.json do projeto.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            Terminal
+          </span>
+
+          <button onclick="copiarCodigo('terminal6')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="terminal6">npm init -y</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- EXPRESS -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 7</span>
+
+      <h2>Instalar o Express</h2>
+
+      <p>
+        O Express será usado para criar o servidor
+        e futuramente as APIs do Walker CRM.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            Terminal
+          </span>
+
+          <button onclick="copiarCodigo('terminal7')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="terminal7">npm install express</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- RESULTADO -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 8</span>
+
+      <h2>Resultado esperado</h2>
+
+      <p>
+        Depois dos comandos anteriores, a estrutura ficará assim:
+      </p>
+
+      <div class="resultado">
+
+walker-crm/
+<br>
+├── server.js
+<br>
+├── package.json
+<br>
+├── banco.json
+<br>
+├── package-lock.json
+<br>
+├── node_modules/
+<br>
+└── public/
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── index.html
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;├── style.css
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── app.js
+
+      </div>
+
+    </section>
+
+
+    <!-- ARQUIVOS -->
+
+    <section class="aula" id="arquivos">
+
+      <span class="numero-aula">AULA 9</span>
+
+      <h2>O que vai dentro de cada arquivo?</h2>
+
+      <p>
+        Agora vamos entender cada arquivo da estrutura.
+      </p>
+
+      <ul>
+
+        <li>
+          <strong>server.js</strong>
+          → servidor Node.js + Express
+        </li>
+
+        <li>
+          <strong>package.json</strong>
+          → configuração do projeto
+        </li>
+
+        <li>
+          <strong>banco.json</strong>
+          → dados iniciais
+        </li>
+
+        <li>
+          <strong>package-lock.json</strong>
+          → gerado pelo npm
+        </li>
+
+        <li>
+          <strong>node_modules/</strong>
+          → bibliotecas instaladas
+        </li>
+
+        <li>
+          <strong>public/index.html</strong>
+          → página
+        </li>
+
+        <li>
+          <strong>public/style.css</strong>
+          → aparência
+        </li>
+
+        <li>
+          <strong>public/app.js</strong>
+          → JavaScript do site
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <!-- SERVER -->
+
+    <section class="aula" id="servidor">
+
+      <span class="numero-aula">AULA 10</span>
+
+      <h2>server.js</h2>
+
+      <p>
+        O server.js será responsável por iniciar o servidor
+        do Walker CRM.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            server.js
+          </span>
+
+          <button onclick="copiarCodigo('codigoServer')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="codigoServer"><span class="keyword">const</span> <span class="plain">express</span> = <span class="function">require</span>(<span class="string">'express'</span>);
+
+<span class="keyword">const</span> <span class="plain">app</span> = <span class="function">express</span>();
+
+<span class="keyword">const</span> <span class="plain">PORT</span> = <span class="number">3000</span>;
+
+<span class="plain">app</span>.<span class="function">use</span>(
+  <span class="plain">express</span>.<span class="function">json</span>()
+);
+
+<span class="plain">app</span>.<span class="function">use</span>(
+  <span class="plain">express</span>.<span class="function">static</span>(<span class="string">'public'</span>)
+);
+
+<span class="plain">app</span>.<span class="function">listen</span>(<span class="plain">PORT</span>, () =&gt; {
+
+  <span class="plain">console</span>.<span class="function">log</span>(
+    <span class="string">`Walker CRM rodando na porta </span><span class="plain">${PORT}</span><span class="string">`</span>
+  );
+
+});</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- PACKAGE -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 11</span>
+
+      <h2>package.json</h2>
+
+      <p>
+        O package.json guarda as configurações do projeto Node.js.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            package.json
+          </span>
+
+          <button onclick="copiarCodigo('codigoPackage')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="codigoPackage">{
+  <span class="property">"name"</span>: <span class="string">"walker-crm"</span>,
+  <span class="property">"version"</span>: <span class="string">"1.0.0"</span>,
+  <span class="property">"description"</span>: <span class="string">"Walker CRM"</span>,
+  <span class="property">"main"</span>: <span class="string">"server.js"</span>,
+
+  <span class="property">"scripts"</span>: {
+    <span class="property">"start"</span>: <span class="string">"node server.js"</span>
+  },
+
+  <span class="property">"dependencies"</span>: {
+    <span class="property">"express"</span>: <span class="string">"^5.1.0"</span>
+  }
+}</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- BANCO -->
+
+    <section class="aula" id="banco">
+
+      <span class="numero-aula">AULA 12</span>
+
+      <h2>banco.json</h2>
+
+      <p>
+        Este será nosso banco de dados inicial.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            banco.json
+          </span>
+
+          <button onclick="copiarCodigo('codigoBanco')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="codigoBanco">{
+  <span class="property">"clientes"</span>: [],
+  <span class="property">"conversas"</span>: [],
+  <span class="property">"vendas"</span>: [],
+  <span class="property">"atendentes"</span>: [],
+  <span class="property">"etiquetas"</span>: []
+}</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- PACKAGE LOCK -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 13</span>
+
+      <h2>package-lock.json</h2>
+
+      <p>
+        Esse arquivo é criado automaticamente pelo npm.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            package-lock.json
+          </span>
+
+          <button onclick="copiarCodigo('codigoLock')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="codigoLock">Este arquivo é gerado automaticamente.
+
+Não é necessário escrever manualmente.
+
+Comando:
+
+npm install</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- NODE MODULES -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 14</span>
+
+      <h2>node_modules/</h2>
+
+      <p>
+        Pasta criada automaticamente pelo npm para armazenar
+        as bibliotecas instaladas.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            node_modules/
+          </span>
+
+          <button onclick="copiarCodigo('codigoModules')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="codigoModules">Esta pasta é criada automaticamente.
+
+Comando:
+
+npm install
+
+Não coloque arquivos manualmente dentro dela.</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- INDEX -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 15</span>
+
+      <h2>public/index.html</h2>
+
+      <p>
+        É a página principal que será aberta no navegador.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            public/index.html
+          </span>
+
+          <button onclick="copiarCodigo('codigoIndex')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="codigoIndex"><span class="tag">&lt;!DOCTYPE html&gt;</span>
+
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="value">"pt-BR"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;head&gt;</span>
+
+  <span class="tag">&lt;meta</span>
+    <span class="attr">charset</span>=<span class="value">"UTF-8"</span>
+  <span class="tag">/&gt;</span>
+
+  <span class="tag">&lt;title&gt;</span>
+    Walker CRM
+  <span class="tag">&lt;/title&gt;</span>
+
+<span class="tag">&lt;/head&gt;</span>
+
+<span class="tag">&lt;body&gt;</span>
+
+  <span class="tag">&lt;h1&gt;</span>
+    Walker CRM
+  <span class="tag">&lt;/h1&gt;</span>
+
+  <span class="tag">&lt;script</span>
+    <span class="attr">src</span>=<span class="value">"app.js"</span>
+  <span class="tag">&gt;&lt;/script&gt;</span>
+
+<span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span></code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- STYLE -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 16</span>
+
+      <h2>public/style.css</h2>
+
+      <p>
+        O style.css controla a aparência do sistema.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            public/style.css
+          </span>
+
+          <button onclick="copiarCodigo('codigoStyle')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="codigoStyle"><span class="tag">body</span> {
+
+  <span class="property">margin</span>: <span class="number">0</span>;
+
+  <span class="property">font-family</span>:
+    <span class="string">Arial, sans-serif</span>;
+
+  <span class="property">background</span>:
+    <span class="string">#ffffff</span>;
+
+  <span class="property">color</span>:
+    <span class="string">#222222</span>;
+}
+
+<span class="tag">h1</span> {
+
+  <span class="property">color</span>:
+    <span class="string">#16a34a</span>;
+}</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- APP -->
+
+    <section class="aula">
+
+      <span class="numero-aula">AULA 17</span>
+
+      <h2>public/app.js</h2>
+
+      <p>
+        O app.js será responsável pelas interações do sistema.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            public/app.js
+          </span>
+
+          <button onclick="copiarCodigo('codigoApp')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="codigoApp"><span class="keyword">console</span>.<span class="function">log</span>(
+  <span class="string">"Walker CRM iniciado!"</span>
+);
+
+<span class="keyword">function</span>
+<span class="function">mensagem</span>() {
+
+  <span class="keyword">return</span>
+    <span class="string">"Sistema funcionando."</span>;
+}</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- API -->
+
+    <section class="aula" id="api">
+
+      <span class="numero-aula">AULA 18</span>
+
+      <h2>API — Próxima etapa</h2>
+
+      <p>
+        Depois de aprender o servidor, vamos criar as primeiras
+        rotas da API do Walker CRM.
+      </p>
+
+      <div class="codigo-box">
+
+        <div class="topo-codigo">
+
+          <span class="nome-arquivo">
+            Exemplo de rota
+          </span>
+
+          <button onclick="copiarCodigo('codigoApi')">
+            COPIAR
+          </button>
+
+        </div>
+
+        <pre><code id="codigoApi"><span class="plain">app</span>.<span class="function">get</span>(<span class="string">"/api/clientes"</span>, (req, res) =&gt; {
+
+  <span class="plain">res</span>.<span class="function">json</span>({
+    <span class="property">"mensagem"</span>:
+      <span class="string">"Lista de clientes"</span>
+  });
+
+});</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- CRM -->
+
+    <section class="aula" id="crm">
+
+      <span class="numero-aula">AULA 19</span>
+
+      <h2>Construindo o Walker CRM</h2>
+
+      <p>
+        Depois das bases de Terminal, Node.js, Express, API e
+        banco de dados, vamos começar a transformar o projeto
+        em um CRM completo.
+      </p>
+
+      <ol>
+
+        <li>Cadastro de clientes</li>
+
+        <li>Histórico dos clientes</li>
+
+        <li>Conversas</li>
+
+        <li>Atendentes</li>
+
+        <li>Etiquetas</li>
+
+        <li>Orçamentos</li>
+
+        <li>Vendas</li>
+
+        <li>Dashboard</li>
+
+        <li>Notificações</li>
+
+        <li>Integração com WhatsApp</li>
+
+        <li>Atendimento simultâneo</li>
+
+        <li>Inteligência artificial</li>
+
+      </ol>
+
+    </section>
+
+
+    <!-- FINAL -->
+
+    <section class="estrutura">
+
+      <h2>🚀 Próximas etapas do curso</h2>
+
+      <ol>
+
+        <li>Terminal completo</li>
+
+        <li>Node.js</li>
+
+        <li>Express</li>
+
+        <li>Servidor local</li>
+
+        <li>API</li>
+
+        <li>Banco de dados</li>
+
+        <li>Clientes</li>
+
+        <li>Conversas</li>
+
+        <li>Vendas</li>
+
+        <li>Atendentes</li>
+
+        <li>Etiquetas</li>
+
+        <li>Dashboard</li>
+
+        <li>WhatsApp</li>
+
+        <li>IA para atendimento</li>
+
+        <li>Walker CRM completo</li>
+
+      </ol>
+
+      <p class="verde">
+        O objetivo é aprender construindo o projeto do começo ao fim.
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    Curso Walker CRM
+
+    <br><br>
+
+    Terminal • Node.js • Express • API • Banco de Dados
+
+  </footer>
+
+
+  <script>
+
+    function copiarCodigo(id) {
+
+      const elemento =
+        document.getElementById(id);
+
+      const texto =
+        elemento.innerText;
+
+      navigator.clipboard.writeText(texto)
+        .then(() => {
+
+          const botao =
+            elemento
+              .parentElement
+              .previousElementSibling
+              .querySelector("button");
+
+          const textoOriginal =
+            botao.innerText;
+
+          botao.innerText =
+            "COPIADO!";
+
+          setTimeout(() => {
+
+            botao.innerText =
+              textoOriginal;
+
+          }, 1500);
+
+        });
+
+    }
+
+  </script>
+
+</body>
+
+</html>
